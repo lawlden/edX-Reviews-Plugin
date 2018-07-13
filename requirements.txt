@@ -1,0 +1,5 @@
+pymysql
+pandas
+mysql-connector-python
+mysql-python
+ast
