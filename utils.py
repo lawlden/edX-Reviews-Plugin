@@ -94,5 +94,5 @@ class Check():
 
     # write to stderr & stdout logs
     def log(self, logfile, script, message):
-        with open('/ratings/log/{}'.format(logfile), 'a') as f:
-            f.write("{}: {} -- {}\n".format(script, timestamp, message))
+        with open('/edx/var/log/reviews_app/{}'.format(logfile), 'a') as f:
+            f.write("{} -- {}\n".format(timestamp, message))

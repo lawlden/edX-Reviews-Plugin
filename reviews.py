@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 '''
 --------------------------------------------------
-               Reviews Backend v1.0
-           Enstructo Incorporated, 2017
+            Reviews Backend Plugin v1.0
+           Enstructo Incorporated, 2018
        Designed for use in conjunction with
          Feedback XBlock by Piotr Mitrios
      https://github.com/pmitros/FeedbackXBlock
-------------->Open edX Ficus/Ginkgo<--------------
+----------->Open edX Ginkgo/Hawthorn<-------------
 '''
 
 from pandas import *
