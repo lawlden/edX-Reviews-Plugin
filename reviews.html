@@ -166,7 +166,12 @@ if course_reviews:
       });
       $(document).ready(function() {
           var length = $(".review").length;
-          var per = 2;
+          var per = 4;
+          var maxHeight = 0;
+          $(".review").each(function () {
+              maxHeight += $(this).height();
+          });
+          $(".reviews").height(maxHeight);
           var pages = Math.ceil(length / per);
           var cur_page = 0;
           $(".review").slice(per).hide();
@@ -179,19 +184,18 @@ if course_reviews:
               $("#"+num).addClass("active");
               cur_page = num;          
               if ( cur_page == 1 ) {
-                  $("#prev").css("opacity","0");
-                  $("#next").css("opacity","1");
+                  $("#prev").addClass("nopaque");
+                  $("#next").removeClass("nopaque");
               } else if ( cur_page == pages ) {
-                  $("#next").css("opacity","0");
-                  $("#prev").css("opacity","1");
+                  $("#next").addClass("nopaque");
+                  $("#prev").removeClass("nopaque");
               } else {
-                  $("#prev").css("opacity","1");
-                  $("#next").css("opacity","1");
+                  $("#prev").removeClass("nopaque");
+                  $("#next").removeClass("nopaque");
               }
           };
           if (pages > 1) {
               cur_page = 1;
-              $("#reviews").css("min-height","40vh");
               $("#pages").append("<li id='prev' class='dir'><span class='fa fa-angle-double-left'></span></li>");
               for (i = 1; i <= pages; i++) {
                   $("#pages").append("<li id='"+i+"' class='page-number'>"+i+"</li>");
@@ -214,7 +218,7 @@ if course_reviews:
                       pageAction(target);
                   };
               });
-              $("#prev").css("opacity","0");
+              $("#prev").addClass("nopaque");
           };
       });
   </script>
