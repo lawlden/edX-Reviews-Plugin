@@ -61,7 +61,7 @@ report['rating'] = rating
 report['response'] = response
 del report['state']
 
-# generate enrollment .csv file
+# generate reviews/ratings .csv file
 if not os.path.exists(out_path):
     os.makedirs(out_path)
 os.chdir(out_path)

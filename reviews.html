@@ -157,6 +157,7 @@ if course_reviews:
     % endif
   </div>
   <script>
+      var per = 4;
       $(".aggregate-header").hover(function() {
           $("#pop-up").slideDown('fast');
           $(".reviews *").css("filter","blur(0.25px)");
@@ -164,14 +165,16 @@ if course_reviews:
           $("#pop-up").slideUp('fast');
           $(".reviews *").css("filter","none");
       });
-      $(document).ready(function() {
-          var length = $(".review").length;
-          var per = 4;
+      function divHeight(perPage) {
           var maxHeight = 0;
-          $(".review").each(function () {
+          $(".review").slice(0, (perPage+1)).each(function() {
               maxHeight += $(this).height();
           });
-          $(".reviews").height(maxHeight);
+          $(".reviews").css("min-height", ( maxHeight + ( (perPage*16) - 6 ) ) + 40 );
+          $(".review:nth-child("+(perPage+1)+"n)").css("border-bottom","none").css("padding-bottom","0");
+      }
+      $(document).ready(function() {
+          var length = $(".review").length;
           var pages = Math.ceil(length / per);
           var cur_page = 0;
           $(".review").slice(per).hide();
@@ -195,6 +198,7 @@ if course_reviews:
               }
           };
           if (pages > 1) {
+              divHeight(per);
               cur_page = 1;
               $("#pages").append("<li id='prev' class='dir'><span class='fa fa-angle-double-left'></span></li>");
               for (i = 1; i <= pages; i++) {
@@ -221,6 +225,13 @@ if course_reviews:
               $("#prev").addClass("nopaque");
           };
       });
+      $(window).resize(function() {
+          divHeight(per);
+      });
   </script>
+% else:
+  <div class="course-reviews">
+    <h2 class="review-header">No Reviews</h2>
+  </div>
 % endif
 
