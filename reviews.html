@@ -82,13 +82,20 @@ if course_reviews:
 
 % if course_reviews:
   <script src="https://cdn.bootcss.com/simplePagination.js/1.6/jquery.simplePagination.js"></script>
-  % if reviews > 1:
-    <script>
-      $(document).ready(function() {
-          $(".aggregate-header").addClass("interactive");
-      })
-    </script>
-  % endif
+  <script>
+    $(document).ready(function() {
+      % if reviews > 1:
+        $(".aggregate-header").addClass("interactive");
+      % endif
+      $(".aggregate-header.interactive").hover(function() {
+          $("#pop-up").slideDown('fast');
+          $(".reviews *").css("filter","blur(0.25px)");
+      }, function() {
+          $("#pop-up").slideUp('fast');
+          $(".reviews *").css("filter","none");
+      });
+    });
+  </script>
   <div class="course-reviews">
     <h2 class="review-header">Course Rating:</h2>
     <div class="aggregate">
@@ -165,13 +172,6 @@ if course_reviews:
   </div>
   <script>
       var per = 4;
-      $(".aggregate-header.interactive").hover(function() {
-          $("#pop-up").slideDown('fast');
-          $(".reviews *").css("filter","blur(0.25px)");
-      }, function() {
-          $("#pop-up").slideUp('fast');
-          $(".reviews *").css("filter","none");
-      });
       function divHeight(perPage) {
           var maxHeight = 0;
           $(".review").slice(0, (perPage+1)).each(function() {
