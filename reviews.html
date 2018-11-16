@@ -82,6 +82,13 @@ if course_reviews:
 
 % if course_reviews:
   <script src="https://cdn.bootcss.com/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+  % if reviews > 1:
+    <script>
+      $(document).ready(function() {
+          $(".aggregate-header").addClass("interactive");
+      })
+    </script>
+  % endif
   <div class="course-reviews">
     <h2 class="review-header">Course Rating:</h2>
     <div class="aggregate">
@@ -158,7 +165,7 @@ if course_reviews:
   </div>
   <script>
       var per = 4;
-      $(".aggregate-header").hover(function() {
+      $(".aggregate-header.interactive").hover(function() {
           $("#pop-up").slideDown('fast');
           $(".reviews *").css("filter","blur(0.25px)");
       }, function() {
