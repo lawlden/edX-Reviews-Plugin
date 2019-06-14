@@ -82,12 +82,14 @@ if course_reviews:
 
 % if course_reviews:
   <script src="https://cdn.bootcss.com/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.hoverintent/1.10.0/jquery.hoverIntent.js"></script>
+    
   <script>
     $(document).ready(function() {
       % if reviews > 1:
         $(".aggregate-header").addClass("interactive");
       % endif
-      $(".aggregate-header.interactive").hover(function() {
+      $(".aggregate-header.interactive").hoverIntent(function() {
           $("#pop-up").slideDown('fast');
           $(".reviews *").css("filter","blur(0.25px)");
       }, function() {
